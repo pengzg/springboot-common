@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="xyz.carjoy.question.common.base.dao.IBaseBrandDao">
+	<sql id="Base_Column_List">
+		bb_id,bb_orgid,bb_code,bb_title,bb_intro,bb_cover,bb_countyid,bb_area,bb_level,bb_path,bb_content,bb_url,bb_sort,bb_state,bb_addtime,bb_updatetime,bb_dr,bb_is_show
+	</sql>
+	<sql id="Base_Column_insert">
+        	#{bb_id,jdbcType=VARCHAR},
+        	#{bb_orgid,jdbcType=INTEGER},
+        	#{bb_code,jdbcType=VARCHAR},
+        	#{bb_title,jdbcType=VARCHAR},
+        	#{bb_intro,jdbcType=LONGVARCHAR},
+        	#{bb_cover,jdbcType=VARCHAR},
+        	#{bb_countyid,jdbcType=VARCHAR},
+        	#{bb_area,jdbcType=VARCHAR},
+        	#{bb_level,jdbcType=VARCHAR},
+        	#{bb_path,jdbcType=VARCHAR},
+        	#{bb_content,jdbcType=LONGVARCHAR},
+        	#{bb_url,jdbcType=VARCHAR},
+        	#{bb_sort,jdbcType=INTEGER},
+        	#{bb_state,jdbcType=TINYINT},
+        	#{bb_addtime,jdbcType=VARCHAR},
+        	#{bb_updatetime,jdbcType=VARCHAR},
+        	#{bb_dr,jdbcType=TINYINT},
+        	#{bb_is_show,jdbcType=TINYINT}
+	</sql>
+	<sql id="Base_query_column">
+		bb_id,bb_orgid,bb_code,bb_title,bb_intro,bb_cover,bb_countyid,bb_area,bb_level,bb_path,bb_content,bb_url,bb_sort,bb_state,bb_addtime,bb_updatetime,bb_dr,bb_is_show
+	</sql>
+	<sql id="Base_query_where">
+		 	<if test="bb_orgid != null and bb_orgid != ''">
+	          AND bb_orgid = #{bb_orgid}
+	         </if>
+		 	<if test="bb_code != null and bb_code != ''">
+	          AND bb_code = #{bb_code}
+	         </if>
+		 	<if test="bb_title != null and bb_title != ''">
+	          AND bb_title = #{bb_title}
+	         </if>
+		 	<if test="bb_intro != null and bb_intro != ''">
+	          AND bb_intro = #{bb_intro}
+	         </if>
+		 	<if test="bb_cover != null and bb_cover != ''">
+	          AND bb_cover = #{bb_cover}
+	         </if>
+		 	<if test="bb_countyid != null and bb_countyid != ''">
+	          AND bb_countyid = #{bb_countyid}
+	         </if>
+		 	<if test="bb_area != null and bb_area != ''">
+	          AND bb_area = #{bb_area}
+	         </if>
+		 	<if test="bb_level != null and bb_level != ''">
+	          AND bb_level = #{bb_level}
+	         </if>
+		 	<if test="bb_path != null and bb_path != ''">
+	          AND bb_path = #{bb_path}
+	         </if>
+		 	<if test="bb_content != null and bb_content != ''">
+	          AND bb_content = #{bb_content}
+	         </if>
+		 	<if test="bb_url != null and bb_url != ''">
+	          AND bb_url = #{bb_url}
+	         </if>
+		 	<if test="bb_sort != null and bb_sort != ''">
+	          AND bb_sort = #{bb_sort}
+	         </if>
+		 	<if test="bb_state != null and bb_state != ''">
+	          AND bb_state = #{bb_state}
+	         </if>
+		 	<if test="bb_addtime != null and bb_addtime != ''">
+	          AND bb_addtime = #{bb_addtime}
+	         </if>
+		 	<if test="bb_updatetime != null and bb_updatetime != ''">
+	          AND bb_updatetime = #{bb_updatetime}
+	         </if>
+		 	<if test="bb_dr != null and bb_dr != ''">
+	          AND bb_dr = #{bb_dr}
+	         </if>
+		 	<if test="bb_is_show != null and bb_is_show != ''">
+	          AND bb_is_show = #{bb_is_show}
+	         </if>
+	</sql>
+	
+	<insert id="insert" parameterType="xyz.carjoy.question.common.base.model.BaseBrand" keyProperty="bb_id" >
+        INSERT INTO base_brand ( <include refid="Base_Column_List" /> )  VALUES (
+            <include refid="Base_Column_insert" /> 
+        )
+	</insert>
+	
+	<insert id="insertBatch" keyProperty="bb_id">
+		INSERT INTO base_brand  ( <include refid="Base_Column_List" /> )   VALUES
+		<foreach collection="array" item="item" index="index" separator=",">
+		   (
+        	#{item.bb_id,jdbcType=VARCHAR},
+        	#{item.bb_orgid,jdbcType=INTEGER},
+        	#{item.bb_code,jdbcType=VARCHAR},
+        	#{item.bb_title,jdbcType=VARCHAR},
+        	#{item.bb_intro,jdbcType=LONGVARCHAR},
+        	#{item.bb_cover,jdbcType=VARCHAR},
+        	#{item.bb_countyid,jdbcType=VARCHAR},
+        	#{item.bb_area,jdbcType=VARCHAR},
+        	#{item.bb_level,jdbcType=VARCHAR},
+        	#{item.bb_path,jdbcType=VARCHAR},
+        	#{item.bb_content,jdbcType=LONGVARCHAR},
+        	#{item.bb_url,jdbcType=VARCHAR},
+        	#{item.bb_sort,jdbcType=INTEGER},
+        	#{item.bb_state,jdbcType=TINYINT},
+        	#{item.bb_addtime,jdbcType=VARCHAR},
+        	#{item.bb_updatetime,jdbcType=VARCHAR},
+        	#{item.bb_dr,jdbcType=TINYINT},
+        	#{item.bb_is_show,jdbcType=TINYINT}
+		   )
+        </foreach>
+	</insert>
+
+	<update id="update" parameterType="xyz.carjoy.question.common.base.model.BaseBrand" flushCache="true">
+        UPDATE base_brand SET
+	        bb_orgid = #{bb_orgid,jdbcType=INTEGER} ,
+	        bb_code = #{bb_code,jdbcType=VARCHAR} ,
+	        bb_title = #{bb_title,jdbcType=VARCHAR} ,
+	        bb_intro = #{bb_intro,jdbcType=LONGVARCHAR} ,
+	        bb_cover = #{bb_cover,jdbcType=VARCHAR} ,
+	        bb_countyid = #{bb_countyid,jdbcType=VARCHAR} ,
+	        bb_area = #{bb_area,jdbcType=VARCHAR} ,
+	        bb_level = #{bb_level,jdbcType=VARCHAR} ,
+	        bb_path = #{bb_path,jdbcType=VARCHAR} ,
+	        bb_content = #{bb_content,jdbcType=LONGVARCHAR} ,
+	        bb_url = #{bb_url,jdbcType=VARCHAR} ,
+	        bb_sort = #{bb_sort,jdbcType=INTEGER} ,
+	        bb_state = #{bb_state,jdbcType=TINYINT} ,
+	        bb_addtime = #{bb_addtime,jdbcType=VARCHAR} ,
+	        bb_updatetime = #{bb_updatetime,jdbcType=VARCHAR} ,
+	        bb_dr = #{bb_dr,jdbcType=TINYINT} ,
+	        bb_is_show = #{bb_is_show,jdbcType=TINYINT} 
+        WHERE 
+	        bb_id = #{bb_id,jdbcType=VARCHAR} 
+	</update> 
+	
+	<update id="updateBatch" flushCache="true">
+	    <foreach collection="array" item="item" open="" separator=";" close=";">
+		        UPDATE base_brand SET
+			        bb_orgid = #{item.bb_orgid,jdbcType=INTEGER} ,
+			        bb_code = #{item.bb_code,jdbcType=VARCHAR} ,
+			        bb_title = #{item.bb_title,jdbcType=VARCHAR} ,
+			        bb_intro = #{item.bb_intro,jdbcType=LONGVARCHAR} ,
+			        bb_cover = #{item.bb_cover,jdbcType=VARCHAR} ,
+			        bb_countyid = #{item.bb_countyid,jdbcType=VARCHAR} ,
+			        bb_area = #{item.bb_area,jdbcType=VARCHAR} ,
+			        bb_level = #{item.bb_level,jdbcType=VARCHAR} ,
+			        bb_path = #{item.bb_path,jdbcType=VARCHAR} ,
+			        bb_content = #{item.bb_content,jdbcType=LONGVARCHAR} ,
+			        bb_url = #{item.bb_url,jdbcType=VARCHAR} ,
+			        bb_sort = #{item.bb_sort,jdbcType=INTEGER} ,
+			        bb_state = #{item.bb_state,jdbcType=TINYINT} ,
+			        bb_addtime = #{item.bb_addtime,jdbcType=VARCHAR} ,
+			        bb_updatetime = #{item.bb_updatetime,jdbcType=VARCHAR} ,
+			        bb_dr = #{item.bb_dr,jdbcType=TINYINT} ,
+			        bb_is_show = #{item.bb_is_show,jdbcType=TINYINT} 
+		        WHERE 
+			        bb_id = #{item.bb_id,jdbcType=VARCHAR} 
+		</foreach>
+	</update>
+
+	<!-- <delete id="remove" parameterType="java.util.Map">
+	    update base_brand set 1=1
+	    set dr = 0 
+	    where bb_id= #{bb_id}
+	</delete>
+	
+	<delete id="removeBatch">
+	    update base_brand where bb_id in
+	    <foreach collection="array" item="item"  open="(" separator="," close=")">
+	        #{item}
+	    </foreach>
+	</delete> -->
+	
+	<select id="find" resultType="xyz.carjoy.question.common.base.model.BaseBrand" parameterType="String">
+		SELECT
+			<include refid="Base_query_column" />
+		FROM
+			 base_brand 
+		WHERE 
+			bb_id= #{bb_id}
+	</select>
+
+	<select id="queryByCondition" resultType="xyz.carjoy.question.common.base.model.BaseBrand" parameterType="java.util.Map">
+		SELECT
+			 <include refid="Base_query_column" /> 
+		FROM 
+			base_brand 
+		WHERE
+			 1=1
+		<include refid="Base_query_where" />
+		<if test="sqlWhere != null">
+			 #{sqlWhere}
+		</if>
+	</select>
+	
+	<select id="getRecordCount" resultType="int" parameterType="java.util.Map">
+		SELECT
+			COUNT(1) 
+		FROM 
+			base_brand 
+		WHERE 
+			1 = 1
+		<include refid="Base_query_where" />
+		<if test="sqlWhere != null">
+			 #{sqlWhere}
+		</if>
+	</select>
+	
+	<select id="select" resultType="xyz.carjoy.question.common.base.model.BaseBrand" parameterType="java.util.Map">
+		SELECT 
+			<include refid="Base_query_column" /> 
+		FROM
+			base_brand 
+		WHERE
+		 	1=1
+		<include refid="Base_query_where" />
+		<if test="sqlWhere != null">
+			 #{sqlWhere}
+		</if>
+	</select>
+</mapper>

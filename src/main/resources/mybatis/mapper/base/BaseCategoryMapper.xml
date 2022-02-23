@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="xyz.carjoy.question.common.base.dao.IBaseCategoryDao">
+	<sql id="Base_Column_List">
+		bc_id,bc_orgid,bc_parentid,bc_code,bc_name,bc_state,bc_remarks,bc_updateuserid,bc_addtime,bc_updatetime,bc_dr,bc_ts,bc_version
+	</sql>
+	<sql id="Base_Column_insert">
+        	#{bc_id,jdbcType=VARCHAR},
+        	#{bc_orgid,jdbcType=VARCHAR},
+        	#{bc_parentid,jdbcType=VARCHAR},
+        	#{bc_code,jdbcType=VARCHAR},
+        	#{bc_name,jdbcType=VARCHAR},
+        	#{bc_state,jdbcType=INTEGER},
+        	#{bc_remarks,jdbcType=VARCHAR},
+        	#{bc_updateuserid,jdbcType=VARCHAR},
+        	#{bc_addtime,jdbcType=VARCHAR},
+        	#{bc_updatetime,jdbcType=VARCHAR},
+        	#{bc_dr,jdbcType=INTEGER},
+        	#{bc_ts,jdbcType=VARCHAR},
+        	#{bc_version,jdbcType=INTEGER}
+	</sql>
+	<sql id="Base_query_column">
+		bc_id,bc_orgid,bc_parentid,bc_code,bc_name,bc_state,bc_remarks,bc_updateuserid,bc_addtime,bc_updatetime,bc_dr,bc_ts,bc_version
+	</sql>
+	<sql id="Base_query_where">
+		 	<if test="bc_orgid != null and bc_orgid != ''">
+	          AND bc_orgid = #{bc_orgid}
+	         </if>
+		 	<if test="bc_parentid != null and bc_parentid != ''">
+	          AND bc_parentid = #{bc_parentid}
+	         </if>
+		 	<if test="bc_code != null and bc_code != ''">
+	          AND bc_code = #{bc_code}
+	         </if>
+		 	<if test="bc_name != null and bc_name != ''">
+	          AND bc_name = #{bc_name}
+	         </if>
+		 	<if test="bc_state != null and bc_state != ''">
+	          AND bc_state = #{bc_state}
+	         </if>
+		 	<if test="bc_remarks != null and bc_remarks != ''">
+	          AND bc_remarks = #{bc_remarks}
+	         </if>
+		 	<if test="bc_updateuserid != null and bc_updateuserid != ''">
+	          AND bc_updateuserid = #{bc_updateuserid}
+	         </if>
+		 	<if test="bc_addtime != null and bc_addtime != ''">
+	          AND bc_addtime = #{bc_addtime}
+	         </if>
+		 	<if test="bc_updatetime != null and bc_updatetime != ''">
+	          AND bc_updatetime = #{bc_updatetime}
+	         </if>
+		 	<if test="bc_dr != null and bc_dr != ''">
+	          AND bc_dr = #{bc_dr}
+	         </if>
+		 	<if test="bc_ts != null and bc_ts != ''">
+	          AND bc_ts = #{bc_ts}
+	         </if>
+		 	<if test="bc_version != null and bc_version != ''">
+	          AND bc_version = #{bc_version}
+	         </if>
+	</sql>
+	
+	<insert id="insert" parameterType="xyz.carjoy.question.common.base.model.BaseCategory" keyProperty="bc_id" >
+        INSERT INTO base_category ( <include refid="Base_Column_List" /> )  VALUES (
+            <include refid="Base_Column_insert" /> 
+        )
+	</insert>
+	
+	<insert id="insertBatch" keyProperty="bc_id">
+		INSERT INTO base_category  ( <include refid="Base_Column_List" /> )   VALUES
+		<foreach collection="array" item="item" index="index" separator=",">
+		   (
+        	#{item.bc_id,jdbcType=VARCHAR},
+        	#{item.bc_orgid,jdbcType=VARCHAR},
+        	#{item.bc_parentid,jdbcType=VARCHAR},
+        	#{item.bc_code,jdbcType=VARCHAR},
+        	#{item.bc_name,jdbcType=VARCHAR},
+        	#{item.bc_state,jdbcType=INTEGER},
+        	#{item.bc_remarks,jdbcType=VARCHAR},
+        	#{item.bc_updateuserid,jdbcType=VARCHAR},
+        	#{item.bc_addtime,jdbcType=VARCHAR},
+        	#{item.bc_updatetime,jdbcType=VARCHAR},
+        	#{item.bc_dr,jdbcType=INTEGER},
+        	#{item.bc_ts,jdbcType=VARCHAR},
+        	#{item.bc_version,jdbcType=INTEGER}
+		   )
+        </foreach>
+	</insert>
+
+	<update id="update" parameterType="xyz.carjoy.question.common.base.model.BaseCategory" flushCache="true">
+        UPDATE base_category SET
+	        bc_orgid = #{bc_orgid,jdbcType=VARCHAR} ,
+	        bc_parentid = #{bc_parentid,jdbcType=VARCHAR} ,
+	        bc_code = #{bc_code,jdbcType=VARCHAR} ,
+	        bc_name = #{bc_name,jdbcType=VARCHAR} ,
+	        bc_state = #{bc_state,jdbcType=INTEGER} ,
+	        bc_remarks = #{bc_remarks,jdbcType=VARCHAR} ,
+	        bc_updateuserid = #{bc_updateuserid,jdbcType=VARCHAR} ,
+	        bc_addtime = #{bc_addtime,jdbcType=VARCHAR} ,
+	        bc_updatetime = #{bc_updatetime,jdbcType=VARCHAR} ,
+	        bc_dr = #{bc_dr,jdbcType=INTEGER} ,
+	        bc_ts = #{bc_ts,jdbcType=VARCHAR} ,
+	        bc_version = #{bc_version,jdbcType=INTEGER} 
+        WHERE 
+	        bc_id = #{bc_id,jdbcType=VARCHAR} 
+	</update> 
+	
+	<update id="updateBatch" flushCache="true">
+	    <foreach collection="array" item="item" open="" separator=";" close=";">
+		        UPDATE base_category SET
+			        bc_orgid = #{item.bc_orgid,jdbcType=VARCHAR} ,
+			        bc_parentid = #{item.bc_parentid,jdbcType=VARCHAR} ,
+			        bc_code = #{item.bc_code,jdbcType=VARCHAR} ,
+			        bc_name = #{item.bc_name,jdbcType=VARCHAR} ,
+			        bc_state = #{item.bc_state,jdbcType=INTEGER} ,
+			        bc_remarks = #{item.bc_remarks,jdbcType=VARCHAR} ,
+			        bc_updateuserid = #{item.bc_updateuserid,jdbcType=VARCHAR} ,
+			        bc_addtime = #{item.bc_addtime,jdbcType=VARCHAR} ,
+			        bc_updatetime = #{item.bc_updatetime,jdbcType=VARCHAR} ,
+			        bc_dr = #{item.bc_dr,jdbcType=INTEGER} ,
+			        bc_ts = #{item.bc_ts,jdbcType=VARCHAR} ,
+			        bc_version = #{item.bc_version,jdbcType=INTEGER} 
+		        WHERE 
+			        bc_id = #{item.bc_id,jdbcType=VARCHAR} 
+		</foreach>
+	</update>
+
+	<!-- <delete id="remove" parameterType="java.util.Map">
+	    update base_category set 1=1
+	    set dr = 0 
+	    where bc_id= #{bc_id}
+	</delete>
+	
+	<delete id="removeBatch">
+	    update base_category where bc_id in
+	    <foreach collection="array" item="item"  open="(" separator="," close=")">
+	        #{item}
+	    </foreach>
+	</delete> -->
+	
+	<select id="find" resultType="xyz.carjoy.question.common.base.model.BaseCategory" parameterType="String">
+		SELECT
+			<include refid="Base_query_column" />
+		FROM
+			 base_category 
+		WHERE 
+			bc_id= #{bc_id}
+	</select>
+
+	<select id="queryByCondition" resultType="xyz.carjoy.question.common.base.model.BaseCategory" parameterType="java.util.Map">
+		SELECT
+			 <include refid="Base_query_column" /> 
+		FROM 
+			base_category 
+		WHERE
+			 1=1
+		<include refid="Base_query_where" />
+		<if test="sqlWhere != null">
+			 #{sqlWhere}
+		</if>
+	</select>
+	
+	<select id="getRecordCount" resultType="int" parameterType="java.util.Map">
+		SELECT
+			COUNT(1) 
+		FROM 
+			base_category 
+		WHERE 
+			1 = 1
+		<include refid="Base_query_where" />
+		<if test="sqlWhere != null">
+			 #{sqlWhere}
+		</if>
+	</select>
+	
+	<select id="select" resultType="xyz.carjoy.question.common.base.model.BaseCategory" parameterType="java.util.Map">
+		SELECT 
+			<include refid="Base_query_column" /> 
+		FROM
+			base_category 
+		WHERE
+		 	1=1
+		<include refid="Base_query_where" />
+		<if test="sqlWhere != null">
+			 #{sqlWhere}
+		</if>
+	</select>
+</mapper>

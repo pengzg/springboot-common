@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="xyz.carjoy.question.weixin.dao.IWeixinInformationDao">
+	<sql id="Base_Column_List">
+		wi_id,wi_code,wi_name,wi_appid,wi_appsecret,wi_apptoken,wi_token,wi_tokentime,wi_ticket,wi_ticketexpire_time,wi_dr,wi_ts,wi_authorize_url,wi_key,wi_mchid,wi_submchid,wi_certlocalpath,wi_certpassword,wi_partnerid,wi_gid
+	</sql>
+	<sql id="Base_Column_insert">
+        	#{wi_id,jdbcType=VARCHAR},
+        	#{wi_code,jdbcType=VARCHAR},
+        	#{wi_name,jdbcType=VARCHAR},
+        	#{wi_appid,jdbcType=VARCHAR},
+        	#{wi_appsecret,jdbcType=VARCHAR},
+        	#{wi_apptoken,jdbcType=VARCHAR},
+        	#{wi_token,jdbcType=VARCHAR},
+        	#{wi_tokentime,jdbcType=VARCHAR},
+        	#{wi_ticket,jdbcType=VARCHAR},
+        	#{wi_ticketexpire_time,jdbcType=VARCHAR},
+        	#{wi_dr,jdbcType=TINYINT},
+        	#{wi_ts,jdbcType=VARCHAR},
+        	#{wi_authorize_url,jdbcType=VARCHAR},
+        	#{wi_key,jdbcType=VARCHAR},
+        	#{wi_mchid,jdbcType=VARCHAR},
+        	#{wi_submchid,jdbcType=VARCHAR},
+        	#{wi_certlocalpath,jdbcType=VARCHAR},
+        	#{wi_certpassword,jdbcType=VARCHAR},
+        	#{wi_partnerid,jdbcType=VARCHAR},
+        	#{wi_gid,jdbcType=VARCHAR}
+	</sql>
+	<sql id="Base_query_column">
+		wi_id,wi_code,wi_name,wi_appid,wi_appsecret,wi_apptoken,wi_token,wi_tokentime,wi_ticket,wi_ticketexpire_time,wi_dr,wi_ts,wi_authorize_url,wi_key,wi_mchid,wi_submchid,wi_certlocalpath,wi_certpassword,wi_partnerid,wi_gid
+	</sql>
+	<sql id="Base_query_where">
+		 	<if test="wi_code != null and wi_code != ''">
+	          AND wi_code = #{wi_code}
+	         </if>
+		 	<if test="wi_name != null and wi_name != ''">
+	          AND wi_name = #{wi_name}
+	         </if>
+		 	<if test="wi_appid != null and wi_appid != ''">
+	          AND wi_appid = #{wi_appid}
+	         </if>
+		 	<if test="wi_appsecret != null and wi_appsecret != ''">
+	          AND wi_appsecret = #{wi_appsecret}
+	         </if>
+		 	<if test="wi_apptoken != null and wi_apptoken != ''">
+	          AND wi_apptoken = #{wi_apptoken}
+	         </if>
+		 	<if test="wi_token != null and wi_token != ''">
+	          AND wi_token = #{wi_token}
+	         </if>
+		 	<if test="wi_tokentime != null and wi_tokentime != ''">
+	          AND wi_tokentime = #{wi_tokentime}
+	         </if>
+		 	<if test="wi_ticket != null and wi_ticket != ''">
+	          AND wi_ticket = #{wi_ticket}
+	         </if>
+		 	<if test="wi_ticketexpire_time != null and wi_ticketexpire_time != ''">
+	          AND wi_ticketexpire_time = #{wi_ticketexpire_time}
+	         </if>
+		 	<if test="wi_dr != null and wi_dr != ''">
+	          AND wi_dr = #{wi_dr}
+	         </if>
+		 	<if test="wi_ts != null and wi_ts != ''">
+	          AND wi_ts = #{wi_ts}
+	         </if>
+		 	<if test="wi_authorize_url != null and wi_authorize_url != ''">
+	          AND wi_authorize_url = #{wi_authorize_url}
+	         </if>
+		 	<if test="wi_key != null and wi_key != ''">
+	          AND wi_key = #{wi_key}
+	         </if>
+		 	<if test="wi_mchid != null and wi_mchid != ''">
+	          AND wi_mchid = #{wi_mchid}
+	         </if>
+		 	<if test="wi_submchid != null and wi_submchid != ''">
+	          AND wi_submchid = #{wi_submchid}
+	         </if>
+		 	<if test="wi_certlocalpath != null and wi_certlocalpath != ''">
+	          AND wi_certlocalpath = #{wi_certlocalpath}
+	         </if>
+		 	<if test="wi_certpassword != null and wi_certpassword != ''">
+	          AND wi_certpassword = #{wi_certpassword}
+	         </if>
+		 	<if test="wi_partnerid != null and wi_partnerid != ''">
+	          AND wi_partnerid = #{wi_partnerid}
+	         </if>
+		 	<if test="wi_gid != null and wi_gid != ''">
+	          AND wi_gid = #{wi_gid}
+	         </if>
+	</sql>
+	
+	<insert id="insert" parameterType="xyz.carjoy.question.weixin.model.WeixinInformation" keyProperty="wi_id" >
+        INSERT INTO weixin_information ( <include refid="Base_Column_List" /> )  VALUES (
+            <include refid="Base_Column_insert" /> 
+        )
+	</insert>
+	
+	<insert id="insertBatch" keyProperty="wi_id">
+		INSERT INTO weixin_information  ( <include refid="Base_Column_List" /> )   VALUES
+		<foreach collection="array" item="item" index="index" separator=",">
+		   (
+        	#{item.wi_id,jdbcType=VARCHAR},
+        	#{item.wi_code,jdbcType=VARCHAR},
+        	#{item.wi_name,jdbcType=VARCHAR},
+        	#{item.wi_appid,jdbcType=VARCHAR},
+        	#{item.wi_appsecret,jdbcType=VARCHAR},
+        	#{item.wi_apptoken,jdbcType=VARCHAR},
+        	#{item.wi_token,jdbcType=VARCHAR},
+        	#{item.wi_tokentime,jdbcType=VARCHAR},
+        	#{item.wi_ticket,jdbcType=VARCHAR},
+        	#{item.wi_ticketexpire_time,jdbcType=VARCHAR},
+        	#{item.wi_dr,jdbcType=TINYINT},
+        	#{item.wi_ts,jdbcType=VARCHAR},
+        	#{item.wi_authorize_url,jdbcType=VARCHAR},
+        	#{item.wi_key,jdbcType=VARCHAR},
+        	#{item.wi_mchid,jdbcType=VARCHAR},
+        	#{item.wi_submchid,jdbcType=VARCHAR},
+        	#{item.wi_certlocalpath,jdbcType=VARCHAR},
+        	#{item.wi_certpassword,jdbcType=VARCHAR},
+        	#{item.wi_partnerid,jdbcType=VARCHAR},
+        	#{item.wi_gid,jdbcType=VARCHAR}
+		   )
+        </foreach>
+	</insert>
+
+	<update id="update" parameterType="xyz.carjoy.question.weixin.model.WeixinInformation" flushCache="true">
+        UPDATE weixin_information SET
+	        wi_code = #{wi_code,jdbcType=VARCHAR} ,
+	        wi_name = #{wi_name,jdbcType=VARCHAR} ,
+	        wi_appid = #{wi_appid,jdbcType=VARCHAR} ,
+	        wi_appsecret = #{wi_appsecret,jdbcType=VARCHAR} ,
+	        wi_apptoken = #{wi_apptoken,jdbcType=VARCHAR} ,
+	        wi_token = #{wi_token,jdbcType=VARCHAR} ,
+	        wi_tokentime = #{wi_tokentime,jdbcType=VARCHAR} ,
+	        wi_ticket = #{wi_ticket,jdbcType=VARCHAR} ,
+	        wi_ticketexpire_time = #{wi_ticketexpire_time,jdbcType=VARCHAR} ,
+	        wi_dr = #{wi_dr,jdbcType=TINYINT} ,
+	        wi_ts = #{wi_ts,jdbcType=VARCHAR} ,
+	        wi_authorize_url = #{wi_authorize_url,jdbcType=VARCHAR} ,
+	        wi_key = #{wi_key,jdbcType=VARCHAR} ,
+	        wi_mchid = #{wi_mchid,jdbcType=VARCHAR} ,
+	        wi_submchid = #{wi_submchid,jdbcType=VARCHAR} ,
+	        wi_certlocalpath = #{wi_certlocalpath,jdbcType=VARCHAR} ,
+	        wi_certpassword = #{wi_certpassword,jdbcType=VARCHAR} ,
+	        wi_partnerid = #{wi_partnerid,jdbcType=VARCHAR} ,
+	        wi_gid = #{wi_gid,jdbcType=VARCHAR} 
+        WHERE 
+	        wi_id = #{wi_id,jdbcType=VARCHAR} 
+	</update> 
+	
+	<update id="updateBatch" flushCache="true">
+	    <foreach collection="array" item="item" open="" separator=";" close=";">
+		        UPDATE weixin_information SET
+			        wi_code = #{item.wi_code,jdbcType=VARCHAR} ,
+			        wi_name = #{item.wi_name,jdbcType=VARCHAR} ,
+			        wi_appid = #{item.wi_appid,jdbcType=VARCHAR} ,
+			        wi_appsecret = #{item.wi_appsecret,jdbcType=VARCHAR} ,
+			        wi_apptoken = #{item.wi_apptoken,jdbcType=VARCHAR} ,
+			        wi_token = #{item.wi_token,jdbcType=VARCHAR} ,
+			        wi_tokentime = #{item.wi_tokentime,jdbcType=VARCHAR} ,
+			        wi_ticket = #{item.wi_ticket,jdbcType=VARCHAR} ,
+			        wi_ticketexpire_time = #{item.wi_ticketexpire_time,jdbcType=VARCHAR} ,
+			        wi_dr = #{item.wi_dr,jdbcType=TINYINT} ,
+			        wi_ts = #{item.wi_ts,jdbcType=VARCHAR} ,
+			        wi_authorize_url = #{item.wi_authorize_url,jdbcType=VARCHAR} ,
+			        wi_key = #{item.wi_key,jdbcType=VARCHAR} ,
+			        wi_mchid = #{item.wi_mchid,jdbcType=VARCHAR} ,
+			        wi_submchid = #{item.wi_submchid,jdbcType=VARCHAR} ,
+			        wi_certlocalpath = #{item.wi_certlocalpath,jdbcType=VARCHAR} ,
+			        wi_certpassword = #{item.wi_certpassword,jdbcType=VARCHAR} ,
+			        wi_partnerid = #{item.wi_partnerid,jdbcType=VARCHAR} ,
+			        wi_gid = #{item.wi_gid,jdbcType=VARCHAR} 
+		        WHERE 
+			        wi_id = #{item.wi_id,jdbcType=VARCHAR} 
+		</foreach>
+	</update>
+
+	<!-- <delete id="remove" parameterType="java.util.Map">
+	    update weixin_information set 1=1
+	    set dr = 0 
+	    where wi_id= #{wi_id}
+	</delete>
+	
+	<delete id="removeBatch">
+	    update weixin_information where wi_id in
+	    <foreach collection="array" item="item"  open="(" separator="," close=")">
+	        #{item}
+	    </foreach>
+	</delete> -->
+	
+	<select id="find" resultType="xyz.carjoy.question.weixin.model.WeixinInformation" parameterType="String">
+		SELECT
+			<include refid="Base_query_column" />
+		FROM
+			 weixin_information 
+		WHERE 
+			wi_id= #{wi_id}
+	</select>
+
+	<select id="queryByCondition" resultType="xyz.carjoy.question.weixin.model.WeixinInformation" parameterType="java.util.Map">
+		SELECT
+			 <include refid="Base_query_column" /> 
+		FROM 
+			weixin_information 
+		WHERE
+			 1=1
+		<include refid="Base_query_where" />
+		<if test="sqlWhere != null">
+			 #{sqlWhere}
+		</if>
+	</select>
+	
+	<select id="getRecordCount" resultType="int" parameterType="java.util.Map">
+		SELECT
+			COUNT(1) 
+		FROM 
+			weixin_information 
+		WHERE 
+			1 = 1
+		<include refid="Base_query_where" />
+		<if test="sqlWhere != null">
+			 #{sqlWhere}
+		</if>
+	</select>
+	
+	<select id="select" resultType="xyz.carjoy.question.weixin.model.WeixinInformation" parameterType="java.util.Map">
+		SELECT 
+			<include refid="Base_query_column" /> 
+		FROM
+			weixin_information 
+		WHERE
+		 	1=1
+		<include refid="Base_query_where" />
+		<if test="sqlWhere != null">
+			 #{sqlWhere}
+		</if>
+	</select>
+</mapper>

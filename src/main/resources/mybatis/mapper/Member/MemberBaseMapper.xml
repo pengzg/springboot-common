@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="xyz.carjoy.question.member.dao.IMemberBaseDao">
+	<sql id="Base_Column_List">
+		mb_id,mb_applicationid,mb_orgid,mb_code,mb_nickname,mb_name,mb_mobile,mb_uuid,mb_openid,mb_img,mb_city,mb_sex,mb_followtime,mb_usertype,mb_birthday,mb_unfollowtime,mb_lastlogintime,mb_state,mb_statdate,mb_enddate,mb_ts,mb_addtime,mb_updatetime,mb_dr
+	</sql>
+	<sql id="Base_Column_insert">
+        	#{mb_id,jdbcType=VARCHAR},
+        	#{mb_applicationid,jdbcType=VARCHAR},
+        	#{mb_orgid,jdbcType=VARCHAR},
+        	#{mb_code,jdbcType=VARCHAR},
+        	#{mb_nickname,jdbcType=VARCHAR},
+        	#{mb_name,jdbcType=VARCHAR},
+        	#{mb_mobile,jdbcType=VARCHAR},
+        	#{mb_uuid,jdbcType=VARCHAR},
+        	#{mb_openid,jdbcType=VARCHAR},
+        	#{mb_img,jdbcType=VARCHAR},
+        	#{mb_city,jdbcType=VARCHAR},
+        	#{mb_sex,jdbcType=VARCHAR},
+        	#{mb_followtime,jdbcType=VARCHAR},
+        	#{mb_usertype,jdbcType=INTEGER},
+        	#{mb_birthday,jdbcType=VARCHAR},
+        	#{mb_unfollowtime,jdbcType=VARCHAR},
+        	#{mb_lastlogintime,jdbcType=VARCHAR},
+        	#{mb_state,jdbcType=INTEGER},
+        	#{mb_statdate,jdbcType=VARCHAR},
+        	#{mb_enddate,jdbcType=VARCHAR},
+        	#{mb_ts,jdbcType=VARCHAR},
+        	#{mb_addtime,jdbcType=VARCHAR},
+        	#{mb_updatetime,jdbcType=VARCHAR},
+        	#{mb_dr,jdbcType=TINYINT}
+	</sql>
+	<sql id="Base_query_column">
+		mb_id,mb_applicationid,mb_orgid,mb_code,mb_nickname,mb_name,mb_mobile,mb_uuid,mb_openid,mb_img,mb_city,mb_sex,mb_followtime,mb_usertype,mb_birthday,mb_unfollowtime,mb_lastlogintime,mb_state,mb_statdate,mb_enddate,mb_ts,mb_addtime,mb_updatetime,mb_dr
+	</sql>
+	<sql id="Base_query_where">
+		 	<if test="mb_applicationid != null and mb_applicationid != ''">
+	          AND mb_applicationid = #{mb_applicationid}
+	         </if>
+		 	<if test="mb_orgid != null and mb_orgid != ''">
+	          AND mb_orgid = #{mb_orgid}
+	         </if>
+			<if test="mb_code != null and mb_code != ''">
+				AND mb_code = #{mb_code}
+			</if>
+		 	<if test="mb_nickname != null and mb_nickname != ''">
+	          AND mb_nickname = #{mb_nickname}
+	         </if>
+		 	<if test="mb_name != null and mb_name != ''">
+	          AND mb_name = #{mb_name}
+	         </if>
+		 	<if test="mb_mobile != null and mb_mobile != ''">
+	          AND mb_mobile = #{mb_mobile}
+	         </if>
+		 	<if test="mb_uuid != null and mb_uuid != ''">
+	          AND mb_uuid = #{mb_uuid}
+	         </if>
+		 	<if test="mb_openid != null and mb_openid != ''">
+	          AND mb_openid = #{mb_openid}
+	         </if>
+		 	<if test="mb_img != null and mb_img != ''">
+	          AND mb_img = #{mb_img}
+	         </if>
+		 	<if test="mb_city != null and mb_city != ''">
+	          AND mb_city = #{mb_city}
+	         </if>
+		 	<if test="mb_sex != null and mb_sex != ''">
+	          AND mb_sex = #{mb_sex}
+	         </if>
+		 	<if test="mb_followtime != null and mb_followtime != ''">
+	          AND mb_followtime = #{mb_followtime}
+	         </if>
+		 	<if test="mb_usertype != null and mb_usertype != ''">
+	          AND mb_usertype = #{mb_usertype}
+	         </if>
+		 	<if test="mb_birthday != null and mb_birthday != ''">
+	          AND mb_birthday = #{mb_birthday}
+	         </if>
+		 	<if test="mb_unfollowtime != null and mb_unfollowtime != ''">
+	          AND mb_unfollowtime = #{mb_unfollowtime}
+	         </if>
+		 	<if test="mb_lastlogintime != null and mb_lastlogintime != ''">
+	          AND mb_lastlogintime = #{mb_lastlogintime}
+	         </if>
+		 	<if test="mb_state != null and mb_state != ''">
+	          AND mb_state = #{mb_state}
+	         </if>
+		 	<if test="mb_statdate != null and mb_statdate != ''">
+	          AND mb_statdate = #{mb_statdate}
+	         </if>
+		 	<if test="mb_enddate != null and mb_enddate != ''">
+	          AND mb_enddate = #{mb_enddate}
+	         </if>
+		 	<if test="mb_ts != null and mb_ts != ''">
+	          AND mb_ts = #{mb_ts}
+	         </if>
+		 	<if test="mb_addtime != null and mb_addtime != ''">
+	          AND mb_addtime = #{mb_addtime}
+	         </if>
+		 	<if test="mb_updatetime != null and mb_updatetime != ''">
+	          AND mb_updatetime = #{mb_updatetime}
+	         </if>
+		 	<if test="mb_dr != null and mb_dr != ''">
+	          AND mb_dr = #{mb_dr}
+	         </if>
+	</sql>
+	
+	<insert id="insert" parameterType="xyz.carjoy.question.member.model.MemberBase" keyProperty="mb_id" >
+        INSERT INTO member_base ( <include refid="Base_Column_List" /> )  VALUES (
+            <include refid="Base_Column_insert" /> 
+        )
+	</insert>
+	
+	<insert id="insertBatch" keyProperty="mb_id">
+		INSERT INTO member_base  ( <include refid="Base_Column_List" /> )   VALUES
+		<foreach collection="array" item="item" index="index" separator=",">
+		   (
+        	#{item.mb_id,jdbcType=VARCHAR},
+        	#{item.mb_applicationid,jdbcType=VARCHAR},
+        	#{item.mb_orgid,jdbcType=VARCHAR},
+        	#{item.mb_code,jdbcType=VARCHAR},
+        	#{item.mb_nickname,jdbcType=VARCHAR},
+        	#{item.mb_name,jdbcType=VARCHAR},
+        	#{item.mb_mobile,jdbcType=VARCHAR},
+        	#{item.mb_uuid,jdbcType=VARCHAR},
+        	#{item.mb_openid,jdbcType=VARCHAR},
+        	#{item.mb_img,jdbcType=VARCHAR},
+        	#{item.mb_city,jdbcType=VARCHAR},
+        	#{item.mb_sex,jdbcType=VARCHAR},
+        	#{item.mb_followtime,jdbcType=VARCHAR},
+        	#{item.mb_usertype,jdbcType=INTEGER},
+        	#{item.mb_birthday,jdbcType=VARCHAR},
+        	#{item.mb_unfollowtime,jdbcType=VARCHAR},
+        	#{item.mb_lastlogintime,jdbcType=VARCHAR},
+        	#{item.mb_state,jdbcType=INTEGER},
+        	#{item.mb_statdate,jdbcType=VARCHAR},
+        	#{item.mb_enddate,jdbcType=VARCHAR},
+        	#{item.mb_ts,jdbcType=VARCHAR},
+        	#{item.mb_addtime,jdbcType=VARCHAR},
+        	#{item.mb_updatetime,jdbcType=VARCHAR},
+        	#{item.mb_dr,jdbcType=TINYINT}
+		   )
+        </foreach>
+	</insert>
+
+	<update id="update" parameterType="xyz.carjoy.question.member.model.MemberBase" flushCache="true">
+        UPDATE member_base SET
+	        mb_applicationid = #{mb_applicationid,jdbcType=VARCHAR} ,
+	        mb_orgid = #{mb_orgid,jdbcType=VARCHAR} ,
+	        mb_code = #{mb_code,jdbcType=VARCHAR} ,
+	        mb_nickname = #{mb_nickname,jdbcType=VARCHAR} ,
+	        mb_name = #{mb_name,jdbcType=VARCHAR} ,
+	        mb_mobile = #{mb_mobile,jdbcType=VARCHAR} ,
+	        mb_uuid = #{mb_uuid,jdbcType=VARCHAR} ,
+	        mb_openid = #{mb_openid,jdbcType=VARCHAR} ,
+	        mb_img = #{mb_img,jdbcType=VARCHAR} ,
+	        mb_city = #{mb_city,jdbcType=VARCHAR} ,
+	        mb_sex = #{mb_sex,jdbcType=VARCHAR} ,
+	        mb_followtime = #{mb_followtime,jdbcType=VARCHAR} ,
+	        mb_usertype = #{mb_usertype,jdbcType=INTEGER} ,
+	        mb_birthday = #{mb_birthday,jdbcType=VARCHAR} ,
+	        mb_unfollowtime = #{mb_unfollowtime,jdbcType=VARCHAR} ,
+	        mb_lastlogintime = #{mb_lastlogintime,jdbcType=VARCHAR} ,
+	        mb_state = #{mb_state,jdbcType=INTEGER} ,
+	        mb_statdate = #{mb_statdate,jdbcType=VARCHAR} ,
+	        mb_enddate = #{mb_enddate,jdbcType=VARCHAR} ,
+	        mb_ts = #{mb_ts,jdbcType=VARCHAR} ,
+	        mb_addtime = #{mb_addtime,jdbcType=VARCHAR} ,
+	        mb_updatetime = #{mb_updatetime,jdbcType=VARCHAR} ,
+	        mb_dr = #{mb_dr,jdbcType=TINYINT} 
+        WHERE 
+	        mb_id = #{mb_id,jdbcType=VARCHAR} 
+	</update> 
+	
+	<update id="updateBatch" flushCache="true">
+	    <foreach collection="array" item="item" open="" separator=";" close=";">
+		        UPDATE member_base SET
+			        mb_applicationid = #{item.mb_applicationid,jdbcType=VARCHAR} ,
+			        mb_orgid = #{item.mb_orgid,jdbcType=VARCHAR} ,
+			        mb_code = #{item.mb_code,jdbcType=VARCHAR} ,
+			        mb_nickname = #{item.mb_nickname,jdbcType=VARCHAR} ,
+			        mb_name = #{item.mb_name,jdbcType=VARCHAR} ,
+			        mb_mobile = #{item.mb_mobile,jdbcType=VARCHAR} ,
+			        mb_uuid = #{item.mb_uuid,jdbcType=VARCHAR} ,
+			        mb_openid = #{item.mb_openid,jdbcType=VARCHAR} ,
+			        mb_img = #{item.mb_img,jdbcType=VARCHAR} ,
+			        mb_city = #{item.mb_city,jdbcType=VARCHAR} ,
+			        mb_sex = #{item.mb_sex,jdbcType=VARCHAR} ,
+			        mb_followtime = #{item.mb_followtime,jdbcType=VARCHAR} ,
+			        mb_usertype = #{item.mb_usertype,jdbcType=INTEGER} ,
+			        mb_birthday = #{item.mb_birthday,jdbcType=VARCHAR} ,
+			        mb_unfollowtime = #{item.mb_unfollowtime,jdbcType=VARCHAR} ,
+			        mb_lastlogintime = #{item.mb_lastlogintime,jdbcType=VARCHAR} ,
+			        mb_state = #{item.mb_state,jdbcType=INTEGER} ,
+			        mb_statdate = #{item.mb_statdate,jdbcType=VARCHAR} ,
+			        mb_enddate = #{item.mb_enddate,jdbcType=VARCHAR} ,
+			        mb_ts = #{item.mb_ts,jdbcType=VARCHAR} ,
+			        mb_addtime = #{item.mb_addtime,jdbcType=VARCHAR} ,
+			        mb_updatetime = #{item.mb_updatetime,jdbcType=VARCHAR} ,
+			        mb_dr = #{item.mb_dr,jdbcType=TINYINT} 
+		        WHERE 
+			        mb_id = #{item.mb_id,jdbcType=VARCHAR} 
+		</foreach>
+	</update>
+
+	<!-- <delete id="remove" parameterType="java.util.Map">
+	    update member_base set 1=1
+	    set dr = 0 
+	    where mb_id= #{mb_id}
+	</delete>
+	
+	<delete id="removeBatch">
+	    update member_base where mb_id in
+	    <foreach collection="array" item="item"  open="(" separator="," close=")">
+	        #{item}
+	    </foreach>
+	</delete> -->
+	
+	<select id="find" resultType="xyz.carjoy.question.member.model.MemberBase" parameterType="String">
+		SELECT
+			<include refid="Base_query_column" />
+		FROM
+			 member_base 
+		WHERE 
+			mb_id= #{mb_id}
+	</select>
+
+	<select id="queryByCondition" resultType="xyz.carjoy.question.member.model.MemberBase" parameterType="java.util.Map">
+		SELECT
+			 <include refid="Base_query_column" /> 
+		FROM 
+			member_base 
+		WHERE
+			 1=1
+		<include refid="Base_query_where" />
+		<if test="sqlWhere != null">
+			 #{sqlWhere}
+		</if>
+	</select>
+	
+	<select id="getRecordCount" resultType="int" parameterType="java.util.Map">
+		SELECT
+			COUNT(1) 
+		FROM 
+			member_base 
+		WHERE 
+			1 = 1
+		<include refid="Base_query_where" />
+		<if test="sqlWhere != null">
+			 #{sqlWhere}
+		</if>
+	</select>
+	
+	<select id="select" resultType="xyz.carjoy.question.member.model.MemberBase" parameterType="java.util.Map">
+		SELECT 
+			<include refid="Base_query_column" /> 
+		FROM
+			member_base 
+		WHERE
+		 	1=1
+		<include refid="Base_query_where" />
+		<if test="sqlWhere != null">
+			 #{sqlWhere}
+		</if>
+	</select>
+</mapper>
